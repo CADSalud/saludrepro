@@ -4,8 +4,10 @@
 .Rhistory
 .RData
 .Ruserdata
+/.Rproj
 
 # OS generated files
+**/.DS_Store
 .DS_Store
 .DS_Store?
 ._*
@@ -13,3 +15,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+
+# Datos
+# Los datos no se suben a git
+**/data/
+*.db
