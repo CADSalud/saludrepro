@@ -6,7 +6,7 @@
 
 # 0. Archivos defunciones
 # 1. Defunciones 1998 a 2015
-
+# 2. Causa de defunciones 1998 a 2015
 
 
 # 0. Archivos defunciones
@@ -16,6 +16,8 @@ parse_number(files.noms.aux)
 
 my_db <- src_sqlite(path = "data/salud_reproductiva.db", create = T)
 my_db # tablas
+
+
 
 # 1. Defunciones 1998 a 2015
 files.noms <- files.noms.aux[parse_number(files.noms.aux) >= 1998]
@@ -34,25 +36,31 @@ lapply(files.noms, function(file.u){
 
 
 
-# 2. Causa de defunciones 1998 a 2015
+# 2. Causa básica de defunciones 1998 a 2015
 files.noms <- files.noms.aux[parse_number(files.noms.aux) >= 1998]
 lapply(files.noms, function(file.u){
   # file.u <- files.noms[1]
   print(file.u)
   dbf.files <- list.files( paste0(path.str,file.u))
   path.u <- paste(path.str, file.u, sep = "")
-  # causa de básica de defunción clasificación internacional
-  dat <- read.dbf( paste0(path.u, "/", 
-                          dbf.files[str_detect(dbf.files, "^CATMINDE")]),
-                   as.is = T ) %>% 
-    mutate(filenom = file.u) %>% 
-    mutate_all(.funs = as.character) 
+  
+  # listas de causas
+  listas.causas <- c("causa básica", "lista mexicana", "lista asamblea mundial salud")
+  names(listas.causas) <- c("CATMINDE", "LISTAMEX", "LISTA1")
+  dat <- lapply(1:length(listas.causas), function(lista.i){
+    nom.lista <- names(listas.causas)[lista.i]
+    read.dbf( paste0(path.u, "/", 
+              dbf.files[str_detect(dbf.files, paste0("^", nom.lista)) ] ),
+              as.is = T ) %>% 
+      mutate(filenom = file.u, 
+             lista = nom.lista, 
+             lista_def = listas.causas[lista.i]) %>% 
+      mutate_all(.funs = as.character) 
+    }) %>% 
+    bind_rows()
   }) %>% 
   bind_rows(.id = "id") %>% 
-  db_insert_into( con = my_db$con, table = "defunciones", values = .) # insert into
-
-tt <- tbl(my_db, sql("SELECT id, count(*) as cnt FROM defunciones group by id")) %>% 
-  collect()
+  db_insert_into( con = my_db$con, table = "causa_defunciones", values = .) # insert into
 
 
 
@@ -144,17 +152,17 @@ tt <- tbl(my_db, sql("SELECT id, count(*) as cnt FROM defunciones group by id"))
 # # intersect colnames 
 # sapply(muertes.l, dim)
 # sapply(muertes.l, names)
-tab.colnames <- lapply(tt, function(elem){
-  data.frame(
-    cols = names(elem),
-    year = unique(elem$filenom),
-    stringsAsFactors = F)
-  }) %>%
-  bind_rows() %>%
-  mutate(loc = 1) %>%
-  spread(year, loc)
-colnames.selec <- tab.colnames$cols[apply(is.na(tab.colnames), 1, sum) == 0]
-
+# tab.colnames <- lapply(tt, function(elem){
+#   data.frame(
+#     cols = names(elem),
+#     year = unique(elem$filenom),
+#     stringsAsFactors = F)
+#   }) %>%
+#   bind_rows() %>%
+#   mutate(loc = 1) %>%
+#   spread(year, loc)
+# colnames.selec <- tab.colnames$cols[apply(is.na(tab.colnames), 1, sum) == 0]
+#
 # # dataframe final
 # defunc_1 <- lapply(muertes.l, function(elem){
 #   print(elem$year %>% unique)
