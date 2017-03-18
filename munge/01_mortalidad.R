@@ -36,7 +36,7 @@ lapply(files.noms, function(file.u){
 
 
 
-# 2. Causa básica de defunciones 1998 a 2015
+# 2. Causa  de defunciones 1998 a 2015
 files.noms <- files.noms.aux[parse_number(files.noms.aux) >= 1998]
 lapply(files.noms, function(file.u){
   # file.u <- files.noms[1]
