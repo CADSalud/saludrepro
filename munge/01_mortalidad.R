@@ -26,9 +26,11 @@ lapply(files.noms, function(file.u){
   print(file.u)
   dbf.files <- list.files( paste0(path.str,file.u))
   path.u <- paste(path.str, file.u, sep = "")
+  # dbf defun
   dat <- read.dbf( paste0(path.u, "/", dbf.files[str_detect(dbf.files, "^DEFUN")]),
                    as.is = T ) %>% 
     mutate(filenom = file.u) %>% 
+    # a caracter para evitar problemas en bind_rows
     mutate_all(.funs = as.character) 
   }) %>% 
   bind_rows(.id = "id") %>% 
@@ -36,14 +38,14 @@ lapply(files.noms, function(file.u){
 
 
 
-# 2. Causa  de defunciones 1998 a 2015
+# 2. Causa de defunciones 1998 a 2015
 files.noms <- files.noms.aux[parse_number(files.noms.aux) >= 1998]
 lapply(files.noms, function(file.u){
   # file.u <- files.noms[1]
   print(file.u)
   dbf.files <- list.files( paste0(path.str,file.u))
   path.u <- paste(path.str, file.u, sep = "")
-  
+  # dbf causas
   # listas de causas
   listas.causas <- c("causa básica", "lista mexicana", "lista asamblea mundial salud")
   names(listas.causas) <- c("CATMINDE", "LISTAMEX", "LISTA1")
