@@ -1,0 +1,307 @@
+---
+title: "Notas"
+author: "Sonia Mendizábal"
+date: "3/3/2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, fig.align = "center", fig.pos = "H")
+```
+
+
+## Reprouctive healt indicators. Guidelines for the generation, analysis and interpretation for global monitoring
+
+**WHO Reproductive Health and Research**. World Health Organization 2006.
+
+
+Comprehensive reproductive health care includes:
+
+  - counselling, information, education, communication and clinical services in family planning;
+safe motherhood, including antenatal care, safe delivery care (skilled assistance for delivery with suitable referral for women with obstetric complications) and postnatal care, breastfeeding and infant and women’s health care;
+  - gynaecological care, including prevention of abortion, treatment of complications of abortion, and safe termination of pregnancy as allowed by law;
+  - prevention and treatment of sexually transmitted diseases (including HIV/AIDS), including condom distribution, universal precautions against transmission of bloodborne infections, voluntary testing and counselling
+  - prevention and management of sexual violence;
+  - active discouragement of harmful traditional practices such as female genital mutilation; and
+  - reproductive health programmes for specific groups such as adolescents, including information, education, communication and services.
+
+
+```{r, out.width = "200px"}
+knitr::include_graphics("who_indicatorlist.png")
+```
+
+
+The majority of the indicators contained in the shortlist are measures of health status (impact indicators). Output indicators can, however, only act as valid proxies for impact when there is an established **causal link with outcome**.
+
+
+Structure of the guidelines
+
+  - Definitions of important terms 
+  - Generation of the indicator
+    - data sources and collection methods
+    - periodicity of data collection 
+    - disaggregation
+  - Analysis and interpretation
+    - use
+    - issues of interpretation 
+    - common pitfalls 
+    - limitations
+    - causal pathway supporting indicators
+  - References/further reading
+
+
+
+The selection criteria for the shortlist of indicators
+
+
+```{r, out.width = "400px"}
+knitr::include_graphics("criteriaselection.png")
+```
+
+
+
+---
+
+
+##  Definition and measurement of reproductive health
+**Ritu Sadana.** Consulta 03 de marzo de 2017 
+
+<http://www.scielosp.org/scielo.php?pid=S0042-96862002000500013&script=sci_arttext>
+
+Including the epidemiology of reproductive morbidity, the ways that illness affects people's lives, and the health care system. 
+
+WHO distinguishes three dimensions of reproductive health: as a human condition (including the level of health and related areas of well-being); as an approach (policies, legislation and attitudes); and as services (the provision of services, access to them, and their utilization) (1).
+
+Cumulative research into health status measurement offers a variety of approaches to constructing operational indicators of reproductive health. Three basic criteria are suggested for any standardized instrument: 1) the range of domains and subsequent indicators tested are linked to the ICPD definition; 2) the full range of health states (spanning gynecological, obstetric, contraceptive morbidity and related events) may be measured with acceptable levels of reliability and validity; and 3) measurements allow for the comparison and interpretation of reproductive health within and across populations. 
+
+```{r, out.width = "200px"}
+knitr::include_graphics("box_proposedoperational.png")
+```
+
+
+---
+
+
+## Measuring reproductive health: review of community-based approaches to assessing morbidity
+
+<http://www.scielosp.org/scielo.php?pid=S0042-96862000000500009&script=sci_arttext>
+
+
+Más que aportar estimaciones válidas de la prevalencia de la morbilidad, las encuestas basadas en entrevistas pueden proporcionar información de utilidad sobre la discapacidad o la carga asociadas a los problemas de salud reproductiva. Es preciso revisar el trabajo metodológico a fin de desarrollar indicadores de las consecuencias físicas, mentales y socioeconómicas de los problemas de salud reproductiva.
+
+
+---
+
+
+## Sexual and reproductive health: a matter of life and death
+
+Consulta 03 de marzo de 2017
+
+<http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(06)69478-6/abstract?cc=y%3D>
+
+
+
+---
+
+## DSSG: Finding new strategies to reduce maternal mortality
+
+<https://github.com/Songeo/mexico-public>
+
+
+
+  - `deaths_dist <- data$deaths`
+  
+  - `mmr_dist <- data$deaths / data$pop_birth`
+  
+##### Known variables 
+
+Nombre:
+
+  - nom_ent
+  - nom_mun
+  - ent
+  - n_localities
+  
+Población:
+
+  - pop_total
+  - pop_birth
+  - pop_fem
+  - pob_tot
+  
+Marginación:
+
+  - no_read
+  - no_ed
+  - no_toilet
+  - no_electricity
+  - no_water
+  - people_per_room
+  - dirt_floor
+  - no_fridge
+  - margination
+  
+Rural vs. Urbano:  
+
+  - urban_pop
+  - rural_pop
+  - rural1_pop
+  - rural2_pop
+  - rural3_pop
+  - rural4_pop
+  - urban_localities
+  - rural_localities
+  
+Muertes:  
+
+  - deaths
+  
+Número de instituciones de salud:  
+
+  - num_institutions
+  - imss_institutions
+  - issste_institutions
+  - ssa_institutions
+  - opportunidades_institutions
+  - other_institutions
+  - rural_institutions
+  - urban_institutions
+  
+Infraestructura maternidad:
+
+  - pregnancy_beds
+  - post_pregnancy_beds
+  - newborn_beds
+  - labor_rooms
+  - ultrasound_systems
+  - doctors
+  - family_physicians
+  - gynecologists
+  - nurses
+  
+  
+Religión:  
+
+  - pct_indig_hhlds
+  - pct_born_here
+  - pct_catholic
+  - pct_protestant
+  - pct_other_religion
+  - pct_non_religion
+  - pct_entitled_health_serv
+  - pct_no_health_serv
+  
+Población asegurada:
+
+  - pct_imss_insured
+  - pct_issste_insured
+  - pct_sp_insured
+  - pct_other_insured
+
+Estado civil:
+  
+  - pct_single
+  
+Rangos de edad:
+
+  - pct_hh_fem
+  - pct_hh_u30
+  - pct_hh_30t59
+  - pct_hh_60p
+  
+Fecundidad:  
+
+  - avg_children_born
+  - avg_children_born_alive
+  - pct_15t19_birth
+  - avg_mother_pregnancies
+  
+Educación: 
+
+  - avg_fem_edu
+  - avg_edu
+  - pct_edu_post_basic
+  - pct_edu_basic
+  - pct_edu_ms
+  - pct_edu_hs
+  - pct_illiterate
+  - pct_econ_active
+  - pct_primary_degree
+  - pct_secondary_degree
+  - pct_superior_degree
+  - pct_post_grad
+  - pct_fem_econ_active
+  - pct_fem_primary_degree
+  - pct_fem_post_grad
+  - pct_unemployed
+  - pct_fem_employed
+  - pct_no_school
+  - pct_fem_no_school
+  - pct_disabilies
+  - pct_occupied_dwellings
+  
+Nacimientos:
+
+  - births
+  - attended_birth_doctor
+  - attended_birth_nurse
+  - attended_birth_ssa
+  - attended_birth_midwife
+  - attended_birth_other
+  - attended_birth_unspecified
+  
+  
+Tipo de naciemiento:
+
+  - birth_procedure_normal
+  - birth_procedure_cesarean
+  - birth_procedure_forceps
+  - birth_procedure_other
+  - birth_procedure_unspecified
+  
+Tipo de embarazo:
+
+  - fetus_single
+  - fetus_twins
+  - fetus_three_plus
+  - fetus_unspecified
+  
+Asegurados:  
+
+  - insurance_none
+  - insurance_imss
+  - insurance_issste
+  - insurance_sp
+  - insurance_opportunidades
+  - insurance_other
+  - insurance_unspecified
+  
+Prenatal:  
+
+  - avg_prenatal_consults
+  - prenatal_yes
+  - prenatal_no
+  - prenatal_unspecified
+
+Poblacion por tipo de seguro:
+
+  - pob_ssa
+  - pob_opportunidades
+  - pob_imss
+  - pob_issste
+  - pob_other_gov_inst
+  - pob_other_private
+  - pob_public_place
+  - pob_household
+  - pob_other
+  - pob_unspecified
+  
+CLUES espacial:
+  
+  - clue_distance
+  - loc_distance
+  - urban_clue_distance
+  - rural_clue_distance
+  - urban_loc_distance
+  - rural_loc_distance
+  
