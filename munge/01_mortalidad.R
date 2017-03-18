@@ -32,8 +32,6 @@ lapply(files.noms, function(file.u){
   bind_rows(.id = "id") %>% 
   db_insert_into( con = my_db$con, table = "defunciones", values = .) # insert into
 
-tt <- tbl(my_db, sql("SELECT id, count(*) as cnt FROM defunciones group by id")) %>% 
-  collect()
 
 
 # 2. Causa de defunciones 1998 a 2015
