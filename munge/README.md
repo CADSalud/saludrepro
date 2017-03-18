@@ -4,10 +4,10 @@ Here you can store any preprocessing or data munging code for your project. For 
 
 ---
 
-Se crea `salud_reproductiva.db` y las tablas:
+Se crea `salud_reproductiva.db` en data. La base de datos incluye las tablas:
 
-  - defunciones: incluye todas las defunciones desde 1998 hasta 2015 y variables de causa, registro, demograficas, etc. 
+  **- defunciones**: incluye todas las defunciones desde 1998 hasta 2015 y variables de causa, registro, demograficas, entre otras. (62 columnas)
   
-  - causa_defunciones: de esta tabla se obtienen las etiquetas de las variables CAUSA_DEF, LISTA_MEX, GR_LISMEX, LISTA1 y MATERNAS
+  **- causa_defunciones**: de esta tabla se obtienen las etiquetas de las variables CAUSA_DEF, LISTA_MEX, GR_LISMEX, LISTA1 y MATERNAS. (5 columnas)
   
-  - naciemientos: 
+  **- nacimientos**: contiene los nacimientos desde 1998 hasta 2015, incluyendo variables demograficas, información de la madre y padre, condiciones de naciemiento, entreo otras. (columnas)
