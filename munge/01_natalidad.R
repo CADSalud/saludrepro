@@ -13,24 +13,24 @@ parse_number(files.noms.aux)
 
 my_db <- src_sqlite(path = "data/salud_reproductiva.db", create = T)
 my_db # tablas
-
+# my_db$con %>% db_drop_table(table='nacimientos') # This drops the table 'nacimientos'.
 
 
 # 1. Defunciones 1998 a 2015
 files.noms <- files.noms.aux[parse_number(files.noms.aux) >= 1998]
-lapply(files.noms[1:3], function(file.u){
-  # file.u <- files.noms[25]
+
+lapply(files.noms, function(file.u){
+  # file.u <- files.noms[2]
   print(file.u)
   dbf.files <- list.files( paste0(path.str,file.u))
   path.u <- paste(path.str, file.u, sep = "/")
   dat <- read.dbf( paste0(path.u, "/", dbf.files[str_detect(dbf.files, "^NACIM")]),
-                   as.is = T )
-  tab.f <- dat %>% 
+                   as.is = T ) %>%
     mutate(filenom = file.u) %>% 
-    # a caracter para evitar problemas en bind_rows
+    # caracter para evitar problemas en bind_rows
     mutate_all(.funs = as.character) 
   }) %>% 
-  bind_rows() %>% 
+  bind_rows() %>%
   db_insert_into( con = my_db$con, table = "nacimientos", values = .) # insert into
 
 
